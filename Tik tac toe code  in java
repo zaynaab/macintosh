@@ -1,0 +1,124 @@
+package game2;
+
+import java.util.Scanner;
+
+public class Game2 {
+
+    
+    public static void main(String[] args) {
+        
+        TTT obj = new TTT();
+        obj.style();
+        obj.op();
+        obj.check();
+      
+    }
+
+
+
+public static class TTT {
+      String[] c = {"0", "1", "2", "3", "4", "5", "6", "7", "8", "9"};
+
+    
+     Scanner s = new Scanner(System.in);
+    void op()
+    {
+    
+        int player = 1, x, choice = 0;
+        String mark;
+        do {
+            style();
+            if (player % 2 == 0) {
+                player = 2;
+            } else {
+                player = 1;
+            }
+            System.out.println("  player " + player + "  enter slot to place number ");
+            choice = s.nextInt();
+            if (player == 1) {
+                mark = "X";
+            } else {
+                mark = "O";
+            }
+            if (choice == 1 && "1".equals(c[1])) {
+                c[1] = mark;
+            } else if (choice == 2 && "2".equals(c[2])) {
+                c[2] = mark;
+            } else if (choice == 3 && "3".equals(c[3])) {
+                c[3] = mark;
+            } else if (choice == 4 && "4".equals(c[4])) {
+                c[4] = mark;
+            } else if (choice == 5 && "5".equals(c[5])) {
+                c[5] = mark;
+            } else if (choice == 6 && "6".equals(c[6])) {
+                c[6] = mark;
+            } else if (choice == 7 && "7".equals(c[7])) {
+                c[7] = mark;
+            } else if (choice == 8 && "8".equals(c[8])) {
+                c[8] = mark;
+            } else if (choice == 9 && "9".equals(c[9])) {
+                c[9] = mark;
+            } else {
+                System.out.println("Invalid move!!! try again");
+
+                player--;
+            }
+            x = check();
+            player++;
+
+        } while (x == 2);
+        {
+            style();
+        }
+        if (x == 1) {
+            System.out.println("\t\t\t PLAYER " + --player + " wins!!!!");
+        } else {
+            System.out.println("GAME DRAW!!!!!!");
+        }
+
+}
+    
+    
+
+     int check() {
+        if ((c[1] == null ? c[2] == null : c[1].equals(c[2])) && c[2].equals(c[3])) {
+            return 1;
+        } else if (c[4].equals(c[5]) && (c[5] == null ? c[6] == null : c[5].equals(c[6]))) {
+            return 1;
+        } else if ((c[7] == null ? c[8] == null : c[7].equals(c[8])) && c[8].equals(c[9])) {
+            return 1;
+        } else if (c[1].equals(c[5]) && (c[5] == null ? c[9] == null : c[5].equals(c[9]))) {
+            return 1;
+        } else if (c[7].equals(c[5]) && (c[5] == null ? c[3] == null : c[5].equals(c[3]))) {
+            return 1;
+        } else if ((c[1] == null ? c[4] == null : c[1].equals(c[4])) && c[4].equals(c[7])) {
+            return 1;
+        } else if (c[2].equals(c[5]) && (c[5] == null ? c[8] == null : c[5].equals(c[8]))) {
+            return 1;
+        } else if ((c[3] == null ? c[6] == null : c[3].equals(c[6])) && c[6].equals(c[9])) {
+            return 1;
+        } else if (!"1".equals(c[1]) && !"2".equals(c[2]) && c[3] != "3" && !"4".equals(c[4]) && c[5] != "5" && !"6".equals(c[6]) && c[7] != "7" && c[8] != "8" && !"9".equals(c[9])) {
+            return 0;
+        } else {
+            return 2;
+        }
+    }
+
+   void style() {
+        System.out.printf("\t\tPlayer 1 (X)  -  Player 2 (O)\n\n\n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\t\t\t    " + c[1] + "* " + c[2] + "   *  " + c[3] + "  \n");
+        System.out.printf("\t\t\t*****************\n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\t\t\t    " + c[4] + "* " + c[5] + "   * " + c[6] + "\n");
+        System.out.printf("\t\t\t*****************\n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\t\t\t    " + c[7] + "* " + c[8] + "   * " + c[9] + "   \n");
+        System.out.printf("\t\t\t     *     *     \n");
+        System.out.printf("\n\n\n\n");
+    }
+}
+}
